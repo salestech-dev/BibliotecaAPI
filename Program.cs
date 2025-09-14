@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Biblioteca.Db;
+using Biblioteca.Interfaces;
+using Biblioteca.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 0))));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 
 // ✅ AGORA pode construir a aplicação
 var app = builder.Build();

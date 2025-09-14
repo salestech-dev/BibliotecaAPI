@@ -16,6 +16,6 @@ namespace Biblioteca.Models
         public int AnoPublicacao { get; set; }
         public int Quantidade { get; set; }
         public string Categoria { get; set; }
-        
+        public bool Disponivel { get; internal set; }
     }
 }
